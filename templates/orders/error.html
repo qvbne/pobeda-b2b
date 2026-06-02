@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow border-0">
+
+    <div class="card-body text-center p-5">
+
+        <h2 class="text-danger">
+
+            Ошибка
+
+        </h2>
+
+        <hr>
+
+        <p>
+
+            {{ message }}
+
+        </p>
+
+        <a
+           href="javascript:history.back()"
+           class="btn btn-success">
+
+            Назад
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

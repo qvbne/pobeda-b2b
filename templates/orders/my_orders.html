@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Мои заказы
+
+</h2>
+
+{% for order in orders %}
+
+<div class="card border-0 shadow-sm mb-3">
+
+    <div class="card-body">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-3">
+
+                <b>
+
+                    {{ order.order_number }}
+
+                </b>
+
+            </div>
+
+            <div class="col-md-3">
+
+                {% if order.status == 'new' %}
+
+                <span class="badge bg-warning">
+
+                    Новый
+
+                </span>
+
+                {% elif order.status == 'confirmed' %}
+
+                <span class="badge bg-info">
+
+                    Подтвержден
+
+                </span>
+
+                {% elif order.status == 'in_progress' %}
+
+                <span class="badge bg-primary">
+
+                    В производстве
+
+                </span>
+
+                {% elif order.status == 'ready' %}
+
+                <span class="badge bg-success">
+
+                    Готов
+
+                </span>
+
+                {% elif order.status == 'completed' %}
+
+                <span class="badge bg-success">
+
+                    Выполнен
+
+                </span>
+
+                {% elif order.status == 'cancelled' %}
+
+                <span class="badge bg-danger">
+
+                    Отменён
+
+                </span>
+
+                {% endif %}
+
+            </div>
+
+            <div class="col-md-3">
+
+                {{ order.total_amount }} ₽
+
+            </div>
+
+            <div class="col-md-3">
+
+                <a
+                        href="{% url 'order_detail' order.id %}"
+                        class="btn btn-outline-success">
+
+                    Подробнее
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-secondary">
+
+    Заказов пока нет
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

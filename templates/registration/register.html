@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="text-center mb-4">
+
+    <img
+        src="{% static 'images/logo.png' %}"
+        height="90">
+
+</div>
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 shadow-lg rounded-4">
+
+            <div class="card-body p-5">
+
+                <div class="text-center mb-4">
+
+                    <h2 class="fw-bold">
+
+                        Регистрация
+
+                    </h2>
+
+                    <p class="text-muted">
+
+                        Создание учетной записи компании
+
+                    </p>
+
+                </div>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Логин
+                        </label>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Email
+                        </label>
+                        {{ form.email }}
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Название компании
+                        </label>
+                        {{ form.company_name }}
+                    </div>
+
+                    <div class="alert alert-light border">
+                        Название организации указывать необязательно. Поле заполняется только при регистрации от имени предприятия.
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Пароль
+                        </label>
+                        {{ form.password1 }}
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">
+                            Подтверждение пароля
+                        </label>
+                        {{ form.password2 }}
+                    </div>
+                    <button class="btn btn-success btn-lg w-100">
+                        Создать аккаунт
+                    </button>
+
+                </form>
+
+                <hr>
+
+                <div class="text-center">
+
+                    Уже зарегистрированы?
+
+                    <a href="{% url 'login' %}">
+
+                        Войти
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

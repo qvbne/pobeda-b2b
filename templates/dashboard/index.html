@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="fw-bold mb-4">
+
+    Аналитическая панель
+
+</h1>
+
+<div class="row">
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h2 class="text-success">
+
+                    {{ total_orders }}
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Всего заказов
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h2 class="text-warning">
+
+                    {{ new_orders }}
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Новых заказов
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h2 class="text-primary">
+
+                    {{ completed_orders }}
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Выполнено
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3 mb-4">
+
+        <div class="card border-0 shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h2 class="text-success">
+
+                    {{ total_revenue }} ₽
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Общая выручка
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-6 mb-4">
+
+        <div class="card border-0 shadow">
+
+            <div class="card-body">
+
+                <h4>
+
+                    Заказы по месяцам
+
+                </h4>
+
+                <canvas id="ordersChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-6 mb-4">
+
+        <div class="card border-0 shadow">
+
+            <div class="card-body">
+
+                <h4>
+
+                    Выручка по месяцам
+
+                </h4>
+
+                <canvas id="revenueChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card border-0 shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <h4>
+
+            Информация о системе
+
+        </h4>
+
+        <hr>
+
+        <p>
+
+            Информационная система ООО «Победа»
+            предназначена для автоматизации
+            закупок и реализации сельскохозяйственной продукции,
+            управления заказами и формирования отчетности.
+
+        </p>
+
+    </div>
+
+</div>
+
+<div class="mb-4">
+
+    <a
+       href="{% url 'export_orders_excel' %}"
+       class="btn btn-success btn-lg">
+
+        📊 Скачать Excel отчет
+
+    </a>
+
+</div>
+
+<script>
+
+const labels = {{ labels|safe }};
+
+const ordersData = {{ orders_data|safe }};
+
+const revenueData = {{ revenue_data|safe }};
+
+new Chart(
+    document.getElementById('ordersChart'),
+    {
+        type: 'bar',
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                label: 'Количество заказов',
+                data: ordersData
+            }]
+        }
+    }
+);
+
+new Chart(
+    document.getElementById('revenueChart'),
+    {
+        type: 'line',
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                label: 'Выручка',
+                data: revenueData
+            }]
+        }
+    }
+);
+
+</script>
+
+{% endblock %}

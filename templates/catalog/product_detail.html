@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card border-0 shadow">
+
+    <div class="card-body p-5">
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                {% if product.image %}
+
+                <img
+                        src="{{ product.image.url }}"
+                        class="img-fluid rounded shadow-sm">
+
+                {% endif %}
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <h1 class="fw-bold">
+
+                    {{ product.name }}
+
+                </h1>
+
+                <hr>
+
+                <p class="text-muted">
+
+                    {{ product.description }}
+
+                </p>
+
+                <h2 class="text-success mt-4">
+
+                    {{ product.price_per_unit }} ₽
+
+                </h2>
+
+                <div class="alert alert-success mt-3">
+                    <strong>
+                        В наличии:
+                    </strong>
+                    {{ product.stock }}
+                    {{ product.unit }}
+                </div>
+
+                <div class="alert alert-light border">
+                    Минимальный заказ:
+                    <strong>
+                        {{ product.min_order_quantity }}
+                        {{ product.unit }}
+                    </strong>
+                </div>
+
+                <form
+                        method="post"
+                        action="{% url 'add_to_cart' product.id %}"
+                        class="mt-4">
+
+                    {% csrf_token %}
+
+                    <label class="form-label">
+
+                        Количество
+
+                    </label>
+
+                   <input
+                           type="number"
+                           step="0.01"
+                           min="{{ product.min_order_quantity }}"
+                           max="{{ product.stock }}"
+                           name="quantity"
+                           value="{{ product.min_order_quantity }}"
+                           class="form-control mb-3">
+
+                    <button
+                            class="btn btn-success btn-lg">
+
+                        Добавить в корзину
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
