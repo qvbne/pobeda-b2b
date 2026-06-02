@@ -1,0 +1,69 @@
+.product-card{
+    transition:0.3s;
+    border-radius:20px;
+}
+
+.product-card:hover{
+    transform:translateY(-6px);
+}
+
+.card{
+    border-radius:20px;
+}
+
+.btn{
+    border-radius:12px;
+}
+
+.navbar{
+    backdrop-filter:blur(10px);
+}
+
+.card img{
+    transition:0.4s;
+}
+
+.product-card:hover img{
+    transform:scale(1.05);
+}
+
+.product-card{
+    overflow:hidden;
+}
+
+.badge{
+    border-radius:12px;
+}
+
+.btn-success{
+    background:#2d6a4f;
+    border:none;
+}
+
+.btn-success:hover{
+    background:#1b4332;
+}
+
+.card{
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+}
+
+.table{
+    vertical-align:middle;
+}
+
+input.form-control{
+    border-radius:12px;
+}
+
+.card-body{
+    background:white;
+}
+
+h1,h2,h3,h4,h5{
+    color:#1b4332;
+}
